@@ -1,0 +1,94 @@
+<!doctype html>
+<html lang="th">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="CLASH AI สนามประลองไอเดีย วิเคราะห์หนึ่งประเด็นผ่านเหตุผลสองด้าน">
+  <meta name="theme-color" content="#090d12">
+  <title>CLASH AI — สนามประลองไอเดีย</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <header class="topbar">
+    <a class="brand" href="./" aria-label="CLASH AI หน้าแรก"><span class="brand-icon">⚔</span>CLASH <b>AI</b></a>
+    <span class="owner">ARMTJ · MINI PROJECT 2026</span>
+  </header>
+
+  <main class="page">
+    <nav class="tabs" aria-label="เมนูหลัก">
+      <button class="tab active" data-page="arena">⚔ สนามประลอง</button>
+      <button class="tab" data-page="history">↻ ประวัติ <span id="history-count">0</span></button>
+      <span class="status"><i></i> AI SIMULATION พร้อมใช้งาน</span>
+    </nav>
+
+    <section id="arena-page">
+      <header class="hero">
+        <div><p class="overline">TWO SIDES. ONE ARENA.</p><h1>ให้เหตุผล <span>ขึ้นสังเวียน.</span></h1><p>หนึ่งประเด็น สองมุมคิด คุณคือคนตัดสิน</p></div>
+        <div class="round-stamp"><strong>03</strong><span>ROUNDS<br>OF REASON</span></div>
+      </header>
+
+      <section class="composer" aria-labelledby="composer-title">
+        <div class="composer-title"><label id="composer-title" for="topic">วันนี้อยากเปิดศึกเรื่องอะไร?</label><span id="char-count">0/180</span></div>
+        <form id="topic-form" class="topic-form">
+          <input id="topic" maxlength="180" autocomplete="off" required minlength="5" value="นักเรียนควรใช้ AI ช่วยทำการบ้าน" aria-describedby="topic-help">
+          <button class="primary" type="submit"><span>⚡</span> เริ่มประลอง <b>↗</b></button>
+        </form>
+        <div class="examples"><span>ลองประเด็น</span><button data-topic="ควรทำงาน 4 วันต่อสัปดาห์แทน 5 วัน">ทำงาน 4 วัน</button><button data-topic="นักเรียนควรใช้ AI ช่วยทำการบ้าน">AI กับการบ้าน</button><button data-topic="ทักษะสำคัญกว่าใบปริญญา">ทักษะ vs ปริญญา</button></div>
+        <p id="topic-help" class="help">ระบบจำลอง AI จะวิเคราะห์หมวดของหัวข้อ แล้วสร้างข้อคิดเห็นสองด้านเพื่อช่วยคิด ไม่ใช่คำตัดสินข้อเท็จจริง</p>
+        <p id="form-error" class="error" role="alert" hidden></p>
+      </section>
+
+      <section id="arena" class="arena" tabindex="-1" aria-labelledby="debate-topic">
+        <header class="arena-head"><div><p>THE DEBATE FLOOR</p><h2 id="debate-topic">สนามพร้อมแล้ว — ใส่ประเด็นเพื่อเริ่ม</h2></div><span id="round-badge">STANDBY</span></header>
+        <div id="live-status" class="live-status" aria-live="polite"><span>พร้อมรับประเด็น</span><strong>ระบบจะนำเสนอทีละฝ่าย</strong></div>
+        <div class="progress" aria-hidden="true"><span id="progress-bar"></span></div>
+
+        <div class="fighters">
+          <article id="pro-card" class="fighter pro">
+            <header><span class="fighter-icon">⚡</span><div><small>01 / THE ADVOCATE</small><h3>ฝ่ายเห็นด้วย</h3></div><b>PRO</b></header>
+            <div id="pro-argument" class="argument empty"><span class="empty-symbol">+</span><strong>ทุกไอเดีย มีเหตุผลให้เชื่อ</strong><p>นำเสนอประโยชน์และโอกาสของประเด็น</p></div>
+            <footer><span>BUILD THE CASE</span><strong id="pro-state">พร้อมเข้าประลอง</strong></footer>
+          </article>
+
+          <div class="versus">VS<small>CLASH</small></div>
+
+          <article id="con-card" class="fighter con">
+            <header><span class="fighter-icon">◆</span><div><small>02 / THE CHALLENGER</small><h3>ฝ่ายไม่เห็นด้วย</h3></div><b>CON</b></header>
+            <div id="con-argument" class="argument empty"><span class="empty-symbol">−</span><strong>ทุกเหตุผล มีอีกมุมให้คิด</strong><p>ท้าทายสมมติฐานและชี้ข้อจำกัด</p></div>
+            <footer><span>CHALLENGE THE CASE</span><strong id="con-state">พร้อมเข้าประลอง</strong></footer>
+          </article>
+        </div>
+
+        <div class="controls">
+          <ol class="steps"><li data-round="0"><b>01</b>เปิดประเด็น</li><li data-round="1"><b>02</b>โต้แย้ง</li><li data-round="2"><b>03</b>ปิดประเด็น</li></ol>
+          <div class="control-buttons">
+            <button id="back-button" class="secondary" disabled>‹ ย้อนกลับ</button>
+            <button id="auto-button" class="secondary" disabled>▶ เล่นอัตโนมัติ</button>
+            <button id="next-button" class="primary" disabled>เริ่มจากช่องด้านบน ↑</button>
+          </div>
+        </div>
+      </section>
+
+      <section id="verdict" class="verdict" tabindex="-1" hidden>
+        <p class="overline">⚖ THE VERDICT</p>
+        <h2 id="winner-title"></h2>
+        <p id="verdict-text" class="verdict-text"></p>
+        <div class="scores"><article class="score pro-score"><header><h3>ฝ่ายเห็นด้วย</h3><strong><span id="pro-total">0</span><small>/30</small></strong></header><div id="pro-scores"></div></article><article class="score con-score"><header><h3>ฝ่ายไม่เห็นด้วย</h3><strong><span id="con-total">0</span><small>/30</small></strong></header><div id="con-scores"></div></article></div>
+        <div class="vote"><div><h3>แล้วคุณล่ะ อยู่ฝั่งไหน?</h3><p id="vote-message">เลือกจากเหตุผลที่ได้อ่าน เปลี่ยนใจได้เสมอ</p></div><div id="vote-buttons"><button data-vote="ฝ่ายเห็นด้วย">ฝ่ายเห็นด้วย</button><button data-vote="เสมอ">เสมอ</button><button data-vote="ฝ่ายไม่เห็นด้วย">ฝ่ายไม่เห็นด้วย</button></div></div>
+        <div class="result-actions"><button id="copy-button" class="secondary">⧉ คัดลอกสรุป</button><button id="restart-button" class="primary">↻ ตั้งประเด็นใหม่</button></div>
+        <p class="notice">คะแนนประเมินรูปแบบการให้เหตุผล ไม่ได้ยืนยันว่าฝ่ายใดถูกต้องตามข้อเท็จจริง</p>
+      </section>
+    </section>
+
+    <section id="history-page" class="history-page" hidden>
+      <p class="overline">PREVIOUS CLASHES</p><h1>ประเด็นที่ผ่านมา<span>.</span></h1><p>บันทึก 8 การประลองล่าสุดในเบราว์เซอร์นี้</p>
+      <div id="history-list"></div>
+      <div id="empty-history" class="empty-history"><strong>↻</strong><h2>ยังไม่มีการประลอง</h2><p>เริ่มประเด็นแรก แล้วผลจะปรากฏที่นี่</p><button class="primary" data-open-arena>กลับเข้าสนาม →</button></div>
+    </section>
+  </main>
+
+  <footer class="site-footer"><strong>CLASH <b>AI</b></strong><span>DESIGNED TO QUESTION · BUILT BY ARMTJ</span><span>HTML · CSS · JAVASCRIPT</span></footer>
+  <div id="toast" role="status" aria-live="polite"></div>
+  <script src="script.js"></script>
+</body>
+</html>
